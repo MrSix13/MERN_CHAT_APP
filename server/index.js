@@ -11,10 +11,11 @@ const app = express();
 require("dotenv").config();
 
 //midlewaeres
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(express.static(path.join(__dirname, "./frontend/build")));
+app.use(express.static(path.join(__dirname, "./frontendd/build")));
 
 //Database Connection
 mongoose.connect(process.env.MONGO_URL,{
@@ -34,7 +35,7 @@ app.use("/api/auth", userRoutes);
 app.use("/api/messages", messageRouter);
 app.get("*",function(_,res){
     res.sendFile(
-      path.join(__dirname,"./frontend/build/index.html"),
+      path.join(__dirname,"./frontendd/build/index.html"),
       function(err){
         if(err){
           res.status(500).send(err);
